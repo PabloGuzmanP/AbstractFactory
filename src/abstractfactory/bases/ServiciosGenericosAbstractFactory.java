@@ -19,4 +19,17 @@ public class ServiciosGenericosAbstractFactory {
             return null;
         }
     }
+    public static IServiciosGenericosWeb createServiceFactoryF() {
+        Properties props = UtilidadesAcceso.loadProperty(
+                "propiedades/AbsFactoryPropiedades.properties");
+        String factoryClassF =
+                props.getProperty("servicioImplementadoWeb");
+        try {
+            return (IServiciosGenericosWeb)
+                    Class.forName(factoryClassF).newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
